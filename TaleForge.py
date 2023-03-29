@@ -228,25 +228,3 @@ if not st.session_state.on_splash_page:
            
             I hope you enjoy your time in TaleForge, and I'd love to hear your thoughts or feedback (daviddi-benedetto@outlook.com). Happy adventuring!
         """)
-
-        
-# Define the HTML template
-html_template = """
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>TaleForge</title>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4248164989036090"
-             crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <!-- Your Streamlit app code goes here -->
-        {}
-    </body>
-</html>
-"""
-
-# Render the Streamlit app using the HTML template
-st.set_page_config(page_title="TaleForge", page_icon="⚒️", layout="wide", initial_sidebar_state="collapsed")
-st.write(html_template.format("Insert your Streamlit app code here"))
