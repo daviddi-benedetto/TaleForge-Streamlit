@@ -16,10 +16,24 @@ api_key = os.environ["OPENAI_API_KEY"] # Works with Vercel
 # Initialize the OpenAI API client
 openai.api_key = api_key
 
-def select_theme():
-    themes = ["fantasy", "sci-fi", "horror"]
-    theme = st.selectbox("Choose your theme:", themes)
-    return theme
+def get_unique_themes():
+    return [
+        "fantasy",
+        "sci-fi",
+        "horror",
+        "mystery",
+        "historical fiction",
+        "superhero",
+        "dystopian",
+        "post-apocalyptic",
+        "cyberpunk",
+        "steampunk",
+        "paranormal romance",
+        "crime noir",
+        "zombie apocalypse",
+        "pirate adventure",
+        "space opera",
+    ]
 
 def get_character_name():
     character_name = st.text_input("Enter your character's name:")
@@ -30,7 +44,11 @@ def generate_response(user_choice, conversation_history):
     progress_placeholder = st.empty()
     progress_bar = progress_placeholder.progress(0)
     message_placeholder = st.empty()
-    message_placeholder.text("Generating your story...")
+
+    # Animate "Generating your story..." message
+    for i in range(3):
+        message_placeholder.text("Generating your story" + "." * (i % 4))
+        time.sleep(0.5)
 
     prompt = f"{conversation_history}User chose option {user_choice}. Generate a cohesive and engaging plot that keeps the user intrigued. Second person. Create dramatic situations and make it possible for the user to die if they choose the wrong choice, thus ending the game early. Provide 2 paragraphs of continuation of the story and 4 new choices for the user's next action. Please ensure each choice is on a new line.\n\n"
 
@@ -55,6 +73,7 @@ def generate_response(user_choice, conversation_history):
 
     return story, choices
 
+
 # Function to generate the initial setting, situation, and character
 def generate_initial_scenario():
     progress_placeholder = st.empty()
@@ -62,7 +81,9 @@ def generate_initial_scenario():
     message_placeholder = st.empty()
     message_placeholder.text("Generating initial scenario...")
 
-    initial_prompt = "Create a connected setting, situation, and character in a fantasy land. The user is the character. Second person. Describe it in 2 or 3 paragraphs and give 4 choices in a list for user's next action."
+    # Incorporate the selected genre into the initial prompt
+    genre = st.session_state.theme
+    initial_prompt = f"Create a connected setting, situation, and character in a {genre} land. The user is the character. Second person. Describe it in 2 or 3 paragraphs and give 4 choices in a list for user's next action."
 
     response = openai.Completion.create(
         engine="text-davinci-003",
@@ -86,9 +107,11 @@ def generate_initial_scenario():
 
     return story, choices
 
+
 # Function to condense conversation history
 def condense_history(history):
     condensed_history = []
+   
     for text in history:
         # Only remove leading and trailing whitespace
         text = text.strip()
@@ -107,14 +130,15 @@ if st.session_state.on_splash_page:
     """, unsafe_allow_html=True)
 
     st.session_state.character_name = get_character_name()
-    st.session_state.theme = select_theme()
+    st.session_state.theme = st.selectbox("Select a theme for your adventure:", get_unique_themes())
 
-    if st.button("Begin Adventure"):
+    if st.session_state.character_name and st.button("Begin Adventure"):
         st.session_state.on_splash_page = False
         initial_story, initial_choices = generate_initial_scenario()
         st.session_state.conversation_history = [initial_story]
         st.session_state.choices = initial_choices
         st.experimental_rerun()
+
 
 if not st.session_state.on_splash_page:
     # Streamlit App
@@ -129,7 +153,7 @@ if not st.session_state.on_splash_page:
 
     with tabs[0]:
         # Display the latest response
-        st.subheader(f"🌅 {st.session_state.character_name}'s Story Unfolds...")
+        st.subheader(f"{st.session_state.character_name}'s Story Unfolds...")
         st.write(st.session_state.conversation_history[0])
 
         st.write("")  # Add some spacing
@@ -198,11 +222,9 @@ if not st.session_state.on_splash_page:
         st.subheader("🎉 About TaleForge")
         st.markdown("""
             Hi there, I'm David Di-Benedetto, the creator of TaleForge! I'm passionate about bringing ideas to life and designing interactive experiences that captivate and entertain. With the power of OpenAI's GPT-3, I've created this web app to provide you with a unique, immersive adventure where your choices shape the narrative.
-            
+           
             When I'm not busy working on TaleForge, I love exploring new ideas and creating amazing projects that spark curiosity and inspiration. I invite you to check out my website at [daviddi-benedetto.com](https://daviddi-benedetto.com) to see what else I've been up to. You'll find a collection of my work ranging from creative instruments to aerospace, and much more.
-            
+           
             I hope you enjoy your time in TaleForge, and I'd love to hear your thoughts or feedback (daviddi-benedetto@outlook.com). Happy adventuring!
         """)
-
-
 
