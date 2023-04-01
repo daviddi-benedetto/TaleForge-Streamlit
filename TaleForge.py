@@ -26,7 +26,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 # Set page config before other imports
 wide_mode = False  # Set to True to enable wide mode
 layout_mode = "wide" if wide_mode else "centered"
-st.set_page_config(page_title="TaleForge", page_icon="⚒️", layout=layout_mode, initial_sidebar_state="collapsed")
+# st.set_page_config(page_title="TaleForge", page_icon="⚒️", layout=layout_mode, initial_sidebar_state="collapsed")
 
 # Set the OpenAI API key directly
 #api_key = st.secrets["OPENAI_API_KEY"]
@@ -363,5 +363,3 @@ if not st.session_state.on_splash_page:
         
             I hope you enjoy your time in TaleForge, and I'd love to hear your thoughts or feedback (daviddi-benedetto@outlook.com). Happy adventuring!
         """)
-
-            
