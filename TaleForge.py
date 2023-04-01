@@ -363,3 +363,5 @@ if not st.session_state.on_splash_page:
         
             I hope you enjoy your time in TaleForge, and I'd love to hear your thoughts or feedback (daviddi-benedetto@outlook.com). Happy adventuring!
         """)
+
+            
