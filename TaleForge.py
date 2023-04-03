@@ -5,7 +5,6 @@
 import streamlit as st
 import openai
 import time
-from streamlit_option_menu import option_menu
 import webbrowser
 
 
