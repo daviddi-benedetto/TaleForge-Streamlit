@@ -465,4 +465,4 @@ elif page == "⚖️ Terms of Service":
         You agree to indemnify and hold harmless TaleForge, its contractors, and its licensors, and their respective directors, officers, employees, and agents from and against any and all claims and expenses, including attorneys' fees, arising out of your use of the Service, including but not limited to your violation of this Agreement.
         
         TaleForge reserves the right, at its sole discretion, to modify or replace any part of this Agreement. It is your responsibility to check this Agreement periodically for changes. Your continued use of or access to the Service following the posting of any changes to this Agreement constitutes acceptance of those changes. TaleForge may also, in the future, offer new services and/or features through the Service (including, the release of new tools and resources). Such new features and/or services shall be subject to the terms and conditions of this Agreement.
-    """)
+    """) 
