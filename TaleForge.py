@@ -2,10 +2,14 @@
 # Made by David Di-Benedetto
 
 ### Imports ---------------------------------------------------------------
+import sys
+
+sys.path.insert(1, "path/to/submodule/streamlit_option_menu")
+
+from streamlit_option_menu import option_menu
 import streamlit as st
 import openai
 import time
-from streamlit_option_menu import option_menu
 import webbrowser
 
 
