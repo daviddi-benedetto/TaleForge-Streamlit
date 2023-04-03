@@ -3,9 +3,9 @@
 
 ### Imports ---------------------------------------------------------------
 import streamlit as st
+from streamlit_option_menu import option_menu
 import openai
 import time
-import streamlit-option-menu
 import webbrowser
 
 
