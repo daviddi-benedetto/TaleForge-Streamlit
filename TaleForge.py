@@ -4,7 +4,7 @@
 ### Imports ---------------------------------------------------------------
 import sys
 
-sys.path.insert(1, "path/to/submodule/streamlit_option_menu")
+sys.path.insert(1, "TaleForge/streamlit-option-menu-0.3.2/")
 
 from streamlit_option_menu import option_menu
 import streamlit as st
