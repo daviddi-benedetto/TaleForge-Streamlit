@@ -64,8 +64,7 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 # Set the OpenAI API key directly
-#api_key = st.secrets["OPENAI_API_KEY"]
-api_key = "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"
+api_key = st.secrets["OPENAI_API_KEY"]
 
 # Initialize the OpenAI API client
 openai.api_key = api_key
